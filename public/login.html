@@ -74,7 +74,7 @@
 
   <script>
     // Endpoint de usuarios
-    const USERS_URL = "https://corsproxy.io/?https://test-db-black.vercel.app/api/users"
+    const USERS_URL = "https://corsproxy.io/?https://testing-db-blob.vercel.app/api/users"
 
     async function fetchUsuarios() {
       const res = await fetch(USERS_URL, { cache: "no-store" });
@@ -101,7 +101,7 @@
       const msg = document.getElementById("msg");
       msg.style.display = "none"; msg.textContent = "";
       const usuario = document.getElementById("usuario").value;
-      const contrasena = document.getElementById("contrasena").value;
+      const contrasena = document.getElementById("password").value;
 
       try {
         const lista = await fetchUsuarios();
