@@ -30,6 +30,7 @@
   </div>
 
   <script>
+    // Endpoint de usuarios
     const RAW_URL = "https://corsproxy.io/?https://test-db-black.vercel.app'";
     const USERS_URL = RAW_URL.replace(/'+$/,''); // quita comilla sobrante
 
@@ -40,12 +41,16 @@
     }
 
     function credencialesValidas(lista, u, p) {
-      u = String(u||"").trim(); p = String(p||"").trim();
-      return (lista||[]).some(item=>{
+      // usuario en minúsculas, contraseñas tal cual (sensibles) pero sin espacios
+      u = String(u || "").trim().toLowerCase();
+      p = String(p || "").trim();
+
+      return (lista || []).some(item => {
         const usuario = item.usuario ?? item.user ?? item.username ?? item.email ?? item.mail;
         const pass = item.contraseña ?? item.password ?? item.pass ?? item.clave;
-        return String(usuario||"").trim().toLowerCase() === u.toLowerCase()
-            && String(pass||"").trim() === p;
+
+        return String(usuario || "").trim().toLowerCase() === u &&
+               String(pass || "").trim() === p;
       });
     }
 
