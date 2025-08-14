@@ -31,8 +31,7 @@
 
   <script>
     // Endpoint de usuarios
-    const RAW_URL = "https://corsproxy.io/?https://test-db-black.vercel.app";
-    const USERS_URL = RAW_URL.replace(/'+$/,''); // quita comilla sobrante
+    const USERS_URL = "https://corsproxy.io/?https://test-db-black.vercel.app"
 
     async function fetchUsuarios() {
       const res = await fetch(USERS_URL, { cache: "no-store" });
