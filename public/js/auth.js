@@ -77,7 +77,7 @@ if (session && !isLogin) {
     if (!wrap) {
       wrap = document.createElement('div');
       wrap.id = 'session-wrap';
-      wrap.className = 'w-100 d-flex justify-content-end p-2'; // Bootstrap: alineado a la derecha
+      wrap.className = 'w-100 d-flex justify-content-end'; // Bootstrap: alineado a la derecha
       wrap.style.backgroundColor = '#233475';
       document.body.prepend(wrap); // primero dentro de <body>
     }
