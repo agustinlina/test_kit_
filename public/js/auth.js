@@ -52,7 +52,7 @@
 if (session && !isLogin) {
   var btn = document.createElement('button');
   btn.textContent = 'Cerrar sesión';
-  btn.style.padding = '4px 8px';
+  btn.style.padding = '4px 0px';
   btn.style.borderRadius = '10px';
   btn.style.backgroundColor = 'transparent';
   btn.style.color = '#e9c500';
