@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <link rel="shortcut icon" href="./media/logo.svg " type="image/x-icon">
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Iniciar sesión</title>
   <link rel="stylesheet" href="./css/union_style.css">
@@ -35,8 +36,8 @@
 
     input {
       background-color: #16245a !important;;
-      font-weight: 400;
-      color: white;
+      font-weight: 400!important;
+      color: white!important;
     }
 
     .form-control,
@@ -55,15 +56,15 @@
 
 <body>
   <div class="card p-4">
-    <h1 class="h4 mb-3 text-center">¡Bievenido!</h1>
+    <h1 class="h4 mb-3 text-center fw-bold">¡Bievenido!</h1>
     <p class="text-center mb-4">Ingresá tu usuario y contraseña</p>
     <form id="login-form">
       <div class="mb-3">
-        <label class="form-label">Usuario</label>
+        <label class="form-label fw-bold">Usuario</label>
         <input id="usuario" class="form-control" autocomplete="username" required />
       </div>
       <div class="mb-3">
-        <label class="form-label">Contraseña</label>
+        <label class="form-label fw-bold">Contraseña</label>
         <input id="contrasena" type="password" class="form-control" autocomplete="current-password" required />
       </div>
       <br>
