@@ -55,9 +55,8 @@
     btn.style.zIndex = '2147483647'
     btn.style.padding = '4px 8px'
     btn.style.borderRadius = '10px'
-    btn.style.border = '1px solid #2a2f3e'
-    btn.style.background = '#161b26'
-    btn.style.color = '#e6e6e6'
+    btn.style.backgroundColor = 'transparent'
+    btn.style.color = '#e9c500'
     btn.style.cursor = 'pointer'
 
     btn.addEventListener('mouseenter', function () {
@@ -81,6 +80,7 @@
       if (!wrap) {
         wrap = document.createElement('div')
         wrap.id = 'session-wrap'
+        wrap.style.backgroundColor = '#233475'
         // OPCIONAL si lo querés flotando arriba a la derecha:
         // wrap.style.position = 'fixed'; wrap.style.top = '12px'; wrap.style.right = '12px'; wrap.style.zIndex = '2147483647';
         document.body.prepend(wrap) // el div queda primero dentro de <body>
