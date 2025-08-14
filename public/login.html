@@ -31,7 +31,7 @@
 
   <script>
     // Endpoint de usuarios
-    const USERS_URL = "https://corsproxy.io/?https://test-db-black.vercel.app"
+    const USERS_URL = "https://corsproxy.io/?https://test-db-black.vercel.app/api/users"
 
     async function fetchUsuarios() {
       const res = await fetch(USERS_URL, { cache: "no-store" });
