@@ -64,7 +64,7 @@ if (session && !isLogin) {
     btn.style.color = '#937d00ff';
   });
   btn.addEventListener('mouseleave', function () {
-    btn.style.background = 'transparent'; // vuelve a transparente
+    btn.style.color = '#937d00ff'; // vuelve a transparente
   });
   btn.addEventListener('click', function () {
     try { localStorage.removeItem('sessionUser'); } catch {}
