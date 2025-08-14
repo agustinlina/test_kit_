@@ -52,7 +52,6 @@
 if (session && !isLogin) {
   var btn = document.createElement('button');
   btn.textContent = 'Cerrar sesión';
-  btn.style.zIndex = '2147483647';
   btn.style.padding = '4px 8px';
   btn.style.borderRadius = '10px';
   btn.style.backgroundColor = 'transparent';
@@ -62,7 +61,7 @@ if (session && !isLogin) {
   btn.style.outline = 'none';    // sin outline al enfocar
 
   btn.addEventListener('mouseenter', function () {
-    btn.style.background = '#1d2330';
+    btn.style.color = '#937d00ff';
   });
   btn.addEventListener('mouseleave', function () {
     btn.style.background = 'transparent'; // vuelve a transparente
