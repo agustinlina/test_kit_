@@ -49,47 +49,51 @@
   } catch (e) {}
 
   // Si hay sesión, inyectamos botón "Cerrar sesión"
-if (session && !isLogin) {
-  var btn = document.createElement('button');
-  btn.textContent = 'Cerrar sesión';
-  btn.style.padding = '4px 0px';
-  btn.style.borderRadius = '10px';
-  btn.style.backgroundColor = 'transparent';
-  btn.style.color = '#e9c500';
-  btn.style.cursor = 'pointer';
-  btn.style.border = 'none';     // sin bordes
-  btn.style.outline = 'none';    // sin outline al enfocar
+  if (session && !isLogin) {
+    var btn = document.createElement('button')
+    btn.textContent = 'Cerrar sesión'
+    btn.style.padding = '0 4px 0 4px'
+    btn.style.borderRadius = '10px'
+    btn.style.backgroundColor = 'transparent'
+    btn.style.color = '#e9c500'
+    btn.style.cursor = 'pointer'
+    btn.style.border = 'none' // sin bordes
+    btn.style.outline = 'none' // sin outline al enfocar
 
-  btn.addEventListener('mouseenter', function () {
-    btn.style.color = '#937d00ff';
-  });
-  btn.addEventListener('mouseleave', function () {
-    btn.style.color = '#937d00ff'; // vuelve a transparente
-  });
-  btn.addEventListener('click', function () {
-    try { localStorage.removeItem('sessionUser'); } catch {}
-    try { sessionStorage.removeItem('nextAfterLogin'); } catch {}
-    location.replace(loginURL);
-  });
+    btn.addEventListener('mouseenter', function () {
+      btn.style.color = '#937d00ff'
+    })
+    btn.addEventListener('mouseleave', function () {
+      btn.style.color = '#e9c500' // vuelve a transparente
+    })
+    btn.addEventListener('click', function () {
+      try {
+        localStorage.removeItem('sessionUser')
+      } catch {}
+      try {
+        sessionStorage.removeItem('nextAfterLogin')
+      } catch {}
+      location.replace(loginURL)
+    })
 
-  function mount () {
-    var wrap = document.getElementById('session-wrap');
-    if (!wrap) {
-      wrap = document.createElement('div');
-      wrap.id = 'session-wrap';
-      wrap.className = 'w-100 d-flex justify-content-end'; // Bootstrap: alineado a la derecha
-      wrap.style.backgroundColor = '#233475';
-      document.body.prepend(wrap); // primero dentro de <body>
+    function mount () {
+      var wrap = document.getElementById('session-wrap')
+      if (!wrap) {
+        wrap = document.createElement('div')
+        wrap.id = 'session-wrap'
+        wrap.className = 'w-100 d-flex justify-content-end' // Bootstrap: alineado a la derecha
+        wrap.style.backgroundColor = '#233475'
+       wrap.style.borderBottom = '1px solid #16245acc'
+        document.body.prepend(wrap) // primero dentro de <body>
+      }
+      wrap.innerHTML = '' // evita duplicados
+      wrap.appendChild(btn) // botón dentro del contenedor
     }
-    wrap.innerHTML = '';           // evita duplicados
-    wrap.appendChild(btn);         // botón dentro del contenedor
-  }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', mount);
-  } else {
-    mount();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', mount)
+    } else {
+      mount()
+    }
   }
-}
-
 })()
