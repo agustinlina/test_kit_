@@ -49,50 +49,48 @@
   } catch (e) {}
 
   // Si hay sesión, inyectamos botón "Cerrar sesión"
-  if (session && !isLogin) {
-    var btn = document.createElement('button')
-    btn.textContent = 'Cerrar sesión'
-    btn.style.zIndex = '2147483647'
-    btn.style.padding = '4px 8px'
-    btn.style.borderRadius = '10px'
-    btn.style.backgroundColor = 'transparent'
-    btn.style.color = '#e9c500'
-    btn.style.cursor = 'pointer'
+if (session && !isLogin) {
+  var btn = document.createElement('button');
+  btn.textContent = 'Cerrar sesión';
+  btn.style.zIndex = '2147483647';
+  btn.style.padding = '4px 8px';
+  btn.style.borderRadius = '10px';
+  btn.style.backgroundColor = 'transparent';
+  btn.style.color = '#e9c500';
+  btn.style.cursor = 'pointer';
+  btn.style.border = 'none';     // sin bordes
+  btn.style.outline = 'none';    // sin outline al enfocar
 
-    btn.addEventListener('mouseenter', function () {
-      btn.style.background = '#1d2330'
-    })
-    btn.addEventListener('mouseleave', function () {
-      btn.style.background = '#161b26'
-    })
-    btn.addEventListener('click', function () {
-      try {
-        localStorage.removeItem('sessionUser')
-      } catch {}
-      try {
-        sessionStorage.removeItem('nextAfterLogin')
-      } catch {}
-      location.replace(loginURL)
-    })
+  btn.addEventListener('mouseenter', function () {
+    btn.style.background = '#1d2330';
+  });
+  btn.addEventListener('mouseleave', function () {
+    btn.style.background = 'transparent'; // vuelve a transparente
+  });
+  btn.addEventListener('click', function () {
+    try { localStorage.removeItem('sessionUser'); } catch {}
+    try { sessionStorage.removeItem('nextAfterLogin'); } catch {}
+    location.replace(loginURL);
+  });
 
-    function mount () {
-      var wrap = document.getElementById('session-wrap')
-      if (!wrap) {
-        wrap = document.createElement('div')
-        wrap.id = 'session-wrap'
-        wrap.style.backgroundColor = '#233475'
-        // OPCIONAL si lo querés flotando arriba a la derecha:
-        // wrap.style.position = 'fixed'; wrap.style.top = '12px'; wrap.style.right = '12px'; wrap.style.zIndex = '2147483647';
-        document.body.prepend(wrap) // el div queda primero dentro de <body>
-      }
-      wrap.innerHTML = '' // evita duplicados
-      wrap.appendChild(btn) // el botón dentro del div
+  function mount () {
+    var wrap = document.getElementById('session-wrap');
+    if (!wrap) {
+      wrap = document.createElement('div');
+      wrap.id = 'session-wrap';
+      wrap.className = 'w-100 d-flex justify-content-end p-2'; // Bootstrap: alineado a la derecha
+      wrap.style.backgroundColor = '#233475';
+      document.body.prepend(wrap); // primero dentro de <body>
     }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', mount)
-    } else {
-      mount()
-    }
+    wrap.innerHTML = '';           // evita duplicados
+    wrap.appendChild(btn);         // botón dentro del contenedor
   }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', mount);
+  } else {
+    mount();
+  }
+}
+
 })()
