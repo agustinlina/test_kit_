@@ -52,15 +52,14 @@
   if (session && !isLogin) {
     var btn = document.createElement('button')
     btn.textContent = 'Cerrar sesión'
-    btn.style.top = '8px'
-    btn.style.left = '8px'
     btn.style.zIndex = '2147483647'
-    btn.style.padding = '8px 12px'
+    btn.style.padding = '4px 8px'
     btn.style.borderRadius = '10px'
     btn.style.border = '1px solid #2a2f3e'
     btn.style.background = '#161b26'
     btn.style.color = '#e6e6e6'
     btn.style.cursor = 'pointer'
+
     btn.addEventListener('mouseenter', function () {
       btn.style.background = '#1d2330'
     })
@@ -76,8 +75,24 @@
       } catch {}
       location.replace(loginURL)
     })
-    document.addEventListener('DOMContentLoaded', function () {
-      document.body.prepend(btn)
-    })
+
+    function mount () {
+      var wrap = document.getElementById('session-wrap')
+      if (!wrap) {
+        wrap = document.createElement('div')
+        wrap.id = 'session-wrap'
+        // OPCIONAL si lo querés flotando arriba a la derecha:
+        // wrap.style.position = 'fixed'; wrap.style.top = '12px'; wrap.style.right = '12px'; wrap.style.zIndex = '2147483647';
+        document.body.prepend(wrap) // el div queda primero dentro de <body>
+      }
+      wrap.innerHTML = '' // evita duplicados
+      wrap.appendChild(btn) // el botón dentro del div
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', mount)
+    } else {
+      mount()
+    }
   }
 })()
