@@ -80,7 +80,7 @@
 
     // 🔹 NUEVO: imagen al lado del botón
     var img = new Image()
-    img.src = '/public/media/exit.svg' // <-- ajusta el nombre si es distinto
+    img.src = './media/exit.svg' // <-- ajusta el nombre si es distinto
     img.alt = 'Logo'
     img.loading = 'lazy'
     img.decoding = 'async'
