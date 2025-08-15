@@ -1,96 +1,135 @@
-// Si hay sesión, inyectamos header con (usuario + avatar) a la izquierda y botón a la derecha
-if (session && !isLogin) {
-  // ---- Avatar + nombre de usuario (izquierda) ----
-  var userBox = document.createElement('div')
-  userBox.style.display = 'flex'
-  userBox.style.alignItems = 'center'
-  userBox.style.gap = '8px'
-  userBox.style.color = '#e9c500'
-  userBox.style.fontWeight = '600'
+;(function () {
+  // Detectar si estamos en /login o /login.html
+  var path = location.pathname
+  var isLogin = /\/login(?:\.html)?$/.test(path)
 
-  var userImg = new Image()
-  userImg.src = './media/user.svg'     // <-- asegurate de tener este ícono en /media (puede ser .png/.svg)
-  userImg.alt = 'Usuario'
-  userImg.loading = 'lazy'
-  userImg.decoding = 'async'
-  userImg.style.width = '20px'
-  userImg.style.height = '20px'
-  userImg.style.pointerEvents = 'none'
-  userImg.style.userSelect = 'none'
-  userImg.setAttribute('aria-hidden', 'true')
+  // Cargar sesión
+  var raw = null,
+    session = null
+  try {
+    raw = localStorage.getItem('sessionUser')
+    session = raw ? JSON.parse(raw) : null
+  } catch (e) {
+    session = null
+  }
 
-  var userName = document.createElement('span')
-  var usuario = (session && session.usuario) ? String(session.usuario).trim() : 'Usuario'
-  userName.textContent = usuario
+  // Construir URL absoluta de login
+  var loginURL = new URL('/login.html', window.location.origin).toString()
 
-  userBox.appendChild(userImg)
-  userBox.appendChild(userName)
-
-  // ---- Botón cerrar sesión (derecha) ----
-  var btn = document.createElement('button')
-  btn.style.display = 'flex'
-  btn.style.alignItems = 'center'
-  btn.style.gap = '6px'
-  btn.style.padding = '4px 8px'
-  btn.style.border = '2px solid #e9c500'
-  btn.style.borderRadius = '8px'
-  btn.style.backgroundColor = 'transparent'
-  btn.style.color = '#e9c500'
-  btn.style.cursor = 'pointer'
-  btn.style.outline = 'none'
-
-  var img = new Image()
-  img.src = './media/exit.svg' // ícono para cerrar sesión
-  img.alt = 'Cerrar sesión'
-  img.loading = 'lazy'
-  img.decoding = 'async'
-  img.style.height = '20px'
-  img.style.width = '20px'
-  img.style.pointerEvents = 'none'
-
-  var text = document.createElement('span')
-  text.textContent = 'Cerrar sesión'
-
-  btn.appendChild(img)
-  btn.appendChild(text)
-
-  btn.addEventListener('mouseenter', function () {
-    btn.style.color = '#937d00ff'
-    btn.style.borderColor = '#937d00ff'
-    img.style.opacity = '0.75'
-  })
-  btn.addEventListener('mouseleave', function () {
-    btn.style.color = '#e9c500'
-    btn.style.borderColor = '#e9c500'
-    img.style.opacity = '1'
-  })
-  btn.addEventListener('click', function () {
-    try { localStorage.removeItem('sessionUser') } catch {}
-    try { sessionStorage.removeItem('nextAfterLogin') } catch {}
+  // Si NO hay sesión y NO es login -> redirigimos YA
+  if (!session && !isLogin) {
+    try {
+      sessionStorage.setItem(
+        'nextAfterLogin',
+        location.pathname + location.search
+      )
+    } catch {}
     location.replace(loginURL)
-  })
+    return
+  }
 
-  function mount () {
-    var wrap = document.getElementById('session-wrap')
-    if (!wrap) {
-      wrap = document.createElement('div')
-      wrap.id = 'session-wrap'
-      // 👇 Flex con extremos y centrado vertical
-      wrap.className = 'w-100 d-flex justify-content-between align-items-center'
-      wrap.style.backgroundColor = '#233475'
-      wrap.style.borderBottom = '1px solid #16245acc'
-      wrap.style.padding = '6px 10px'
-      wrap.style.minHeight = '44px'
-      document.body.prepend(wrap)
+  // Si HAY sesión y estamos en login -> volver a donde quería ir o al home
+  if (session && isLogin) {
+    var next = sessionStorage.getItem('nextAfterLogin') || '/'
+    try {
+      sessionStorage.removeItem('nextAfterLogin')
+    } catch {}
+    location.replace(next)
+    return
+  }
+
+  // Mostrar documento
+  try {
+    document.documentElement.style.visibility = 'visible'
+  } catch (e) {}
+
+  // ---------- NUEVO HEADER ----------
+  if (session && !isLogin) {
+    // Usuario (izquierda)
+    var userBox = document.createElement('div')
+    userBox.style.display = 'flex'
+    userBox.style.alignItems = 'center'
+    userBox.style.gap = '8px'
+    userBox.style.color = '#e9c500'
+    userBox.style.fontWeight = '600'
+
+    var userImg = new Image()
+    userImg.src = './media/user.svg'
+    userImg.alt = 'Usuario'
+    userImg.style.width = '20px'
+    userImg.style.height = '20px'
+    userImg.style.pointerEvents = 'none'
+
+    var userName = document.createElement('span')
+    var usuario = (session && session.usuario) ? String(session.usuario).trim() : 'Usuario'
+    userName.textContent = usuario
+
+    userBox.appendChild(userImg)
+    userBox.appendChild(userName)
+
+    // Botón cerrar sesión (derecha)
+    var btn = document.createElement('button')
+    btn.style.display = 'flex'
+    btn.style.alignItems = 'center'
+    btn.style.gap = '6px'
+    btn.style.padding = '4px 8px'
+    btn.style.border = '2px solid #e9c500'
+    btn.style.borderRadius = '8px'
+    btn.style.backgroundColor = 'transparent'
+    btn.style.color = '#e9c500'
+    btn.style.cursor = 'pointer'
+    btn.style.outline = 'none'
+
+    var exitImg = new Image()
+    exitImg.src = './media/exit.svg'
+    exitImg.alt = 'Cerrar sesión'
+    exitImg.style.height = '20px'
+    exitImg.style.width = '20px'
+    exitImg.style.pointerEvents = 'none'
+
+    var text = document.createElement('span')
+    text.textContent = 'Cerrar sesión'
+
+    btn.appendChild(exitImg)
+    btn.appendChild(text)
+
+    btn.addEventListener('mouseenter', function () {
+      btn.style.color = '#937d00ff'
+      btn.style.borderColor = '#937d00ff'
+      exitImg.style.opacity = '0.75'
+    })
+    btn.addEventListener('mouseleave', function () {
+      btn.style.color = '#e9c500'
+      btn.style.borderColor = '#e9c500'
+      exitImg.style.opacity = '1'
+    })
+    btn.addEventListener('click', function () {
+      try { localStorage.removeItem('sessionUser') } catch {}
+      try { sessionStorage.removeItem('nextAfterLogin') } catch {}
+      location.replace(loginURL)
+    })
+
+    function mount () {
+      var wrap = document.getElementById('session-wrap')
+      if (!wrap) {
+        wrap = document.createElement('div')
+        wrap.id = 'session-wrap'
+        wrap.className = 'w-100 d-flex justify-content-between align-items-center'
+        wrap.style.backgroundColor = '#233475'
+        wrap.style.borderBottom = '1px solid #16245acc'
+        wrap.style.padding = '6px 10px'
+        wrap.style.minHeight = '44px'
+        document.body.prepend(wrap)
+      }
+      wrap.innerHTML = ''
+      wrap.appendChild(userBox)
+      wrap.appendChild(btn)
     }
-    wrap.innerHTML = '' // evita duplicados
-    wrap.appendChild(userBox) // izquierda: avatar + nombre
-    wrap.appendChild(btn)     // derecha: botón
-  }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', mount)
-  } else {
-    mount()
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', mount)
+    } else {
+      mount()
+    }
   }
-}
+})()
