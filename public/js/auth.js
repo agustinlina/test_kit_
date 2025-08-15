@@ -56,8 +56,8 @@
     var userImg = new Image()
     userImg.src = './media/account.svg'
     userImg.alt = 'Usuario'
-    userImg.style.width = '20px'
-    userImg.style.height = '20px'
+    userImg.style.width = '26px'
+    userImg.style.height = '26px'
     userImg.style.pointerEvents = 'none'
 
     var userName = document.createElement('span')
