@@ -53,6 +53,8 @@
     var btn = document.createElement('button')
     btn.textContent = 'Cerrar sesión'
     btn.style.padding = '0 4px 0 4px'
+    btn.style.border = '4px solid #e9c500'
+    btn.style.borderRadius = '8px'
     btn.style.borderRadius = '10px'
     btn.style.backgroundColor = 'transparent'
     btn.style.color = '#e9c500'
@@ -76,18 +78,31 @@
       location.replace(loginURL)
     })
 
+    // 🔹 NUEVO: imagen al lado del botón
+    var img = new Image()
+    img.src = '/public/media/exit.svg' // <-- ajusta el nombre si es distinto
+    img.alt = 'Logo'
+    img.loading = 'lazy'
+    img.decoding = 'async'
+    img.style.height = '20px'
+    img.style.marginRight = '8px'
+    img.style.userSelect = 'none'
+    img.style.pointerEvents = 'none' // no interfiere con el clic del botón
+
     function mount () {
       var wrap = document.getElementById('session-wrap')
       if (!wrap) {
         wrap = document.createElement('div')
         wrap.id = 'session-wrap'
-        wrap.className = 'w-100 d-flex justify-content-end' // Bootstrap: alineado a la derecha
+        wrap.className = 'w-100 d-flex justify-content-end align-items-center' // alineado a la derecha
         wrap.style.backgroundColor = '#233475'
-       wrap.style.borderBottom = '1px solid #16245acc'
+        wrap.style.borderBottom = '1px solid #16245acc'
+        wrap.style.gap = '6px' // separación entre img y botón
         document.body.prepend(wrap) // primero dentro de <body>
       }
       wrap.innerHTML = '' // evita duplicados
-      wrap.appendChild(btn) // botón dentro del contenedor
+      wrap.appendChild(img) // primero la imagen
+      wrap.appendChild(btn) // luego el botón
     }
 
     if (document.readyState === 'loading') {
