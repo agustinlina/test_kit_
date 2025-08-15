@@ -86,6 +86,7 @@
   btn.addEventListener('mouseleave', function () {
     btn.style.color = '#e9c500'
     btn.style.borderColor = '#e9c500'
+    img.style.opacity = '0.6'
   })
   btn.addEventListener('click', function () {
     try { localStorage.removeItem('sessionUser') } catch {}
