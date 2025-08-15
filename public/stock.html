@@ -3,11 +3,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Stock | La Unión</title>
+  <title>Stock</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script defer src="./stock.js"></script>
   <link rel="stylesheet" href="/css/protect.css">
-
   <link rel="stylesheet" href="./css/union_style.css">
   <link rel="stylesheet" href="./css/stock.css">
   <script defer src="/js/auth.js"></script>
@@ -26,7 +25,7 @@
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title d-flex gap-3 align-items-center" id="offcanvasNavbarLabel">TOOK-KIT</h5>
+            <h5 class="offcanvas-title d-flex gap-3 align-items-center" id="offcanvasNavbarLabel">TOOL-KIT</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
@@ -76,7 +75,6 @@
 
         <option value="olavarria" selected>1 (O)</option>
         <option value="cordoba">2 (C)</option>
-        <option value="polo">3 (P)</option>
       </select>
       <button class="filtro-btn" id="filtro-camion">Camión</button>
       <button class="filtro-btn" id="filtro-auto">Auto importado</button>
@@ -90,10 +88,12 @@
           <th>Descripción</th>
           <th>Rubro</th>
           <th>Stock</th>
+          <th>Precio</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
+
 
     <div id="loading" class="loader"></div>
     <div id="error"></div>
