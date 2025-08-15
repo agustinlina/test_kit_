@@ -23,7 +23,7 @@ const stockSelect = document.getElementById('stock-select')
 const filtroBtns = [filtroCamion, filtroAuto, filtroTodos]
 
 let allData = []
-let stockActual = 'olavarria'
+let stockActual = 'cordoba'
 
 // -------------------- Utilidades --------------------
 
