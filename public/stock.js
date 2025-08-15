@@ -177,7 +177,6 @@ function renderTable (data) {
       <td>${buttonHTML} ${item.descripcion || ''}</td>
       <td>${item.rubro || ''}</td>
       <td>${item.stock || ''}</td>
-      <td style="white-space:nowrap;">${formatPrecio(item.precio)}</td>
     `
 
     tableBody.appendChild(tr)
