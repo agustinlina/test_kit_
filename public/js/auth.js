@@ -54,7 +54,7 @@
     userBox.style.fontWeight = '600'
 
     var userImg = new Image()
-    userImg.src = './media/user.svg'
+    userImg.src = './media/account.svg'
     userImg.alt = 'Usuario'
     userImg.style.width = '20px'
     userImg.style.height = '20px'
