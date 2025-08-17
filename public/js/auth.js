@@ -115,7 +115,7 @@
         wrap = document.createElement('div')
         wrap.id = 'session-wrap'
         wrap.className = 'w-100 d-flex justify-content-between align-items-center'
-        wrap.style.backgroundColor = 'rgb(10, 19, 28)'
+        wrap.style.backgroundColor = 'transparent'
         wrap.style.borderBottom = '1px solid hsl(210, 59%, 72%, 20%)'
         wrap.style.padding = '6px 10px'
         wrap.style.minHeight = '44px'
