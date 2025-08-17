@@ -73,10 +73,10 @@
     btn.style.alignItems = 'center'
     btn.style.gap = '6px'
     btn.style.padding = '4px 8px'
-    btn.style.border = '2px solid #e9c500'
+    btn.style.border = '2px solid rgb(60, 146, 231)'
     btn.style.borderRadius = '8px'
     btn.style.backgroundColor = 'transparent'
-    btn.style.color = '#e9c500'
+    btn.style.color = 'rgb(60, 146, 231)'
     btn.style.cursor = 'pointer'
     btn.style.outline = 'none'
 
@@ -94,13 +94,13 @@
     btn.appendChild(text)
 
     btn.addEventListener('mouseenter', function () {
-      btn.style.color = '#937d00ff'
-      btn.style.borderColor = '#937d00ff'
+      btn.style.color = 'rgb(100, 146, 231)'
+      btn.style.borderColor = 'rgb(100, 146, 231)'
       exitImg.style.opacity = '0.75'
     })
     btn.addEventListener('mouseleave', function () {
-      btn.style.color = '#e9c500'
-      btn.style.borderColor = '#e9c500'
+      btn.style.color = 'rgb(60, 146, 231)'
+      btn.style.borderColor = 'rgb(60, 146, 231)'
       exitImg.style.opacity = '1'
     })
     btn.addEventListener('click', function () {
@@ -115,8 +115,8 @@
         wrap = document.createElement('div')
         wrap.id = 'session-wrap'
         wrap.className = 'w-100 d-flex justify-content-between align-items-center'
-        wrap.style.backgroundColor = '#233475'
-        wrap.style.borderBottom = '1px solid #16245acc'
+        wrap.style.backgroundColor = 'rgb(10, 19, 28)'
+        wrap.style.borderBottom = '1px solid hsl(210, 59%, 72%, 20%)'
         wrap.style.padding = '6px 10px'
         wrap.style.minHeight = '44px'
         document.body.prepend(wrap)
