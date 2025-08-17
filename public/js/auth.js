@@ -50,7 +50,7 @@
     userBox.style.display = 'flex'
     userBox.style.alignItems = 'center'
     userBox.style.gap = '8px'
-    userBox.style.color = '#e9c500'
+    userBox.style.color = 'rgb(60, 146, 231)'
     userBox.style.fontWeight = '600'
 
     var userImg = new Image()
