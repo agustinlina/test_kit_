@@ -5,8 +5,8 @@
   --primary: rgb(143, 185, 226);
   --secondary: rgb(24, 77, 129);
   --accent: rgb(60, 146, 231);
-  --card:hsl(210, 59%, 72%, 5%);
-  --selected:hsl(210, 59%, 72%, 20%);
+  --card: hsl(210, 59%, 72%, 5%);
+  --selected: hsl(210, 59%, 72%, 20%);
 }
 
 * {
@@ -15,7 +15,7 @@
   box-sizing: border-box;
 }
 body {
-  background: #121212;
+  background-color: var(--background) !important;
   color: #fff;
   font-family: sans-serif;
   display: flex;

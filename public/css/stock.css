@@ -9,6 +9,10 @@
   --selected:hsl(210, 59%, 72%, 20%);
 }
 
+body{
+   background-color: var(--background)!important;
+}
+
 .buscador {
   width: 100%;
   padding: 8px 16px;
